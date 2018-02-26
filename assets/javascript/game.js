@@ -1,13 +1,9 @@
 var guessNumber = 0;
 var userNumber = 0;
-// var highestValue = 0;
-// var values = [];
-// var lowestValue = 12;
 
-//reset progress
+//reset game
 function reset() {
-    // change this to (201-19)
-    guessNumber = Math.floor(Math.random() * (201 - 19));
+    guessNumber = Math.floor(Math.random() * 182 + 19);
     $("#guessNumber").html(guessNumber);
     userNumber = 0;
     $(".progress-bar").css("width", "0%");
@@ -19,34 +15,25 @@ function reset() {
 //give values to the crystals
 function crystalValues() {
     $(".crystal").each(function() {
-        $(this).attr("value", Math.floor(Math.random() * (13 - 1)));
+        $(this).attr("value", Math.floor(Math.random() * 12 +1));
         var currentValue = $(this).attr("value");
-        // values.push(currentValue);
-        // console.log(values);
-        // if (currentValue < lowestValue) {
-        //     lowestValue = currentValue;
-        //     console.log("lowest" + lowestValue);
-        // }
-        // if (currentValue > highestValue) {
-        //     highestValue = currentValue;
-        //     console.log("highest" + highestValue);
-        // }
         console.log($(this).attr("alt") + " " + $(this).attr("value"));
       });
 }
+
 //check to see if the user has guessed the guessNumber
 function check() {
     if (userNumber === guessNumber) {
         var $wins = parseInt($("#wins").html()) + 1;
         $("#wins").html($wins);
-        $(".crystals-collected").append("<div class='win-lose-message'>You win!</div>");
-        reset();
+        $(".crystals-collected").append("<h1 class='win-lose-message' style='background: green'>You win!</h1>");
+        setTimeout(reset, 3000);
     }
     else if (userNumber > guessNumber) {
         var $losses = parseInt($("#losses").html()) + 1;
         $("#losses").html($losses);
-        $(".crystals-collected").append("<div class='win-lose-message'>You lose!</div>");
-        reset();
+        $(".crystals-collected").append("<h1 class='win-lose-message' style='background: red'>You lose!</h1>");
+        setTimeout(reset, 3000);
     }
 }
 
@@ -63,5 +50,3 @@ $(document).ready(function () {
         check();
     });
 });
-
-//Notes: challenge # of clicks?
