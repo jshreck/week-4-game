@@ -30,20 +30,21 @@ header {
     border-bottom: none;
     border-image: url("../images/wood.jpg") 50 repeat;
 }
-.crystals-collected {
-    height: 30vw;
+.gems-collected {
+    height: 20vw;
     position: relative;
+    overflow: hidden;
 }
-.crystal-collected {
+.gem-collected {
     height: 5vw;
     width:auto;
 }
-.crystal-display {
+.gem-display {
     background: url("../images/wood.jpg");
     border-radius: 0 0 10px 10px;
     text-align: center;
 }
-.crystal {
+.gem {
     cursor: pointer;
     max-width: 15%;
     background: none;
