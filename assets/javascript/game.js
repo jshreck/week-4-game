@@ -1,52 +1,67 @@
 var guessNumber = 0;
 var userNumber = 0;
-var $crystal1 = $("#crystal1");
-var $crystal2 = $("#crystal2");
-var $crystal3 = $("#crystal3");
-var $crystal4 = $("#crystal4");
+// var highestValue = 0;
+// var values = [];
+// var lowestValue = 12;
 
-function reset () {
-    guessNumber = Math.floor(Math.random() * (201-19));
-    console.log("guessNumber = " + guessNumber)
+//reset progress
+function reset() {
+    // change this to (201-19)
+    guessNumber = Math.floor(Math.random() * (201 - 19));
+    $("#guessNumber").html(guessNumber);
     userNumber = 0;
-    crystalNumbers();
+    $(".progress-bar").css("width", "0%");
+    $("#userNumber").html(userNumber);
+    $(".crystals-collected").empty();
+    crystalValues();
 }
 
-//Give values to the crystals
-function crystalNumbers () {
-    
-    $crystal1.attr("value", Math.floor(Math.random() * (13-1)));
-    console.log("crystal1 attribute value " + $crystal1.attr("value"));
-
-    $crystal2.attr("value", Math.floor(Math.random() * (13-1)));
-    console.log("crystal2 attribute value " + $crystal2.attr("value"));
-
-    $crystal3.attr("value", Math.floor(Math.random() * (13-1)));
-    console.log("crystal3 attribute value " + $crystal3.attr("value"));
-
-    $crystal4.attr("value", Math.floor(Math.random() * (13-1)));
-    console.log("crystal4 attribute value " + $crystal4.attr("value"));
- }
-
- function check () {
+//give values to the crystals
+function crystalValues() {
+    $(".crystal").each(function() {
+        $(this).attr("value", Math.floor(Math.random() * (13 - 1)));
+        var currentValue = $(this).attr("value");
+        // values.push(currentValue);
+        // console.log(values);
+        // if (currentValue < lowestValue) {
+        //     lowestValue = currentValue;
+        //     console.log("lowest" + lowestValue);
+        // }
+        // if (currentValue > highestValue) {
+        //     highestValue = currentValue;
+        //     console.log("highest" + highestValue);
+        // }
+        console.log($(this).attr("alt") + " " + $(this).attr("value"));
+      });
+}
+//check to see if the user has guessed the guessNumber
+function check() {
     if (userNumber === guessNumber) {
-      //eventually display on screen
-      console.log("You win!");
-      reset();
+        var $wins = parseInt($("#wins").html()) + 1;
+        $("#wins").html($wins);
+        $(".crystals-collected").append("<div class='win-lose-message'>You win!</div>");
+        reset();
     }
     else if (userNumber > guessNumber) {
-        //eventually display on screen
-        console.log("You lose");
+        var $losses = parseInt($("#losses").html()) + 1;
+        $("#losses").html($losses);
+        $(".crystals-collected").append("<div class='win-lose-message'>You lose!</div>");
         reset();
     }
 }
-//document.ready here
-reset();
- //When crystal is clicked, add it's value to the user's number
- $(".crystal").on("click", function () {
-    userNumber += parseInt($(this).attr("value"));
-    console.log("userNumber" + userNumber);
 
-    check();
- });
+//==============================================================
+$(document).ready(function () {
 
+    reset();
+    //When crystal is clicked, add the crystal to the the "collected crystals" section, add it's value to the user's number, and update the progress bar to reflect current status
+    $(".crystal").on("click", function () {
+        $(".crystals-collected").append("<img src=" + $(this).attr("src") + " max-height='100px' width='100px' class='crystal-collected'>");
+        userNumber += parseInt($(this).attr("value"));
+        $(".progress-bar").css("width", (userNumber / parseInt(guessNumber) * 100) + "%");
+        $("#userNumber").html(userNumber);
+        check();
+    });
+});
+
+//Notes: challenge # of clicks?

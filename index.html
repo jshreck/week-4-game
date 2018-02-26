@@ -1,20 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-    crossorigin="anonymous">
+        crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Modern+Antiqua" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="./assets/css/style.css">
     <title>Crystal Collector</title>
 </head>
-<body>
-    <div class="crystal" id="crystal1">Crystal 1</div>
-    <div class="crystal" id="crystal2">Crystal 2</div>
-    <div class="crystal" id="crystal3">Crystal 3</div>
-    <div class="crystal" id="crystal4">Crystal 4</div>
 
-    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="./assets/javascript/game.js"></script>
+<body>
+    <div class="container">
+        <div class="row">
+            <header class="col-lg-offset-2 col-md-8">
+                <h1>Treasure Collector</h1>
+                <p>Collect the enough treasure to fill the treasure box, but don't go over! It's up to you to figure out the value of each gem.</p>
+            </header>
+        </div>
+        <div class="row">
+            <div class="main-content col-lg-offset-2 col-md-8">
+                <div class="status row">
+                    <div class="col-xs-2">
+                        <p>Wins:
+                            <span id="wins">0</span>
+                        </p>
+                        <p>Losses:
+                            <span id="losses">0</span>
+                        </p>
+                    </div>
+                    <div class="col-xs-8">
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-striped active progress-bar-warning" role="progressbar" style="min-width:3%; width: 0%;">
+                                <span id="userNumber">0</span>
+                            </div>
+                        </div>
+                    </div>    
+                    <div class="col-xs-2">
+                    <p class=>To fill box:
+                        <span id="guessNumber"></span>
+                    </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="crystals-collected col-xs-12"></div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="crystal-display col-lg-offset-2 col-md-8">
+                
+                    <img class="crystal" src=./assets/images/emerald.png alt="emerald">
+               
+               
+                    <img class="crystal" src=./assets/images/diamond.png alt="diamond">
+               
+                
+                    <img class="crystal" src=./assets/images/ruby.png alt="ruby">
+              
+               
+                    <img class="crystal" src=./assets/images/sapphire.png alt="sapphire">
+                
+            </div>
+        </div>
+    </div>
+        <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+        <script type="text/javascript" src="./assets/javascript/game.js"></script>
 </body>
+
 </html>
